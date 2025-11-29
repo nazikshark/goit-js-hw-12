@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-  <form id="search-form">
-    <input type="text" id="search-input" placeholder="Search images..." />
-    <button type="submit">Search</button>
-  </form>
+  <form class="form" id="search-form">
+  <input type="text" id="search-input" placeholder="Search images..." />
+  <button type="submit">Search</button>
+</form>
 
-  <ul class="gallery"></ul>
+<ul class="gallery"></ul>
 
-  <button id="load-more-btn" class="hidden">Load more</button>
-  <div id="loader" class="hidden">Loading...</div>
+<button id="load-more-btn" class="hidden">Load more</button>
+<span class="loader hidden"></span>
 
-  <script type="module" src="/main.js"></script>
+
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
