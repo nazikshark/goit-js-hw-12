@@ -1,40 +1,77 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
+const gallery = document.querySelector(".gallery");
+const loader = document.querySelector(".loader");
+const loadMoreBtn = document.querySelector(".load-more");
+
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+
 export function clearGallery() {
-  document.querySelector(".gallery").innerHTML = "";
+  gallery.innerHTML = "";
 }
 
 export function renderGallery(images) {
-  document.querySelector(".gallery").innerHTML = createMarkup(images);
+  const markup = images
+    .map(
+      img => `
+      <li class="gallery-item">
+        <a href="${img.largeImageURL}">
+          <img src="${img.webformatURL}" alt="${img.tags}" />
+        </a>
+        <div class="info">
+          <p><b>Likes:</b> ${img.likes}</p>
+          <p><b>Views:</b> ${img.views}</p>
+          <p><b>Comments:</b> ${img.comments}</p>
+          <p><b>Downloads:</b> ${img.downloads}</p>
+        </div>
+      </li>
+    `
+    )
+    .join("");
+
+  gallery.innerHTML = markup;
+  lightbox.refresh();
 }
 
 export function appendGallery(images) {
-  document
-    .querySelector(".gallery")
-    .insertAdjacentHTML("beforeend", createMarkup(images));
-}
-
-function createMarkup(images) {
-  return images
+  const markup = images
     .map(
       img => `
-        <li class="item">
-          <img src="${img.webformatURL}" alt="${img.tags}" width="300" />
-        </li>`
+      <li class="gallery-item">
+        <a href="${img.largeImageURL}">
+          <img src="${img.webformatURL}" alt="${img.tags}" />
+        </a>
+        <div class="info">
+          <p><b>Likes:</b> ${img.likes}</p>
+          <p><b>Views:</b> ${img.views}</p>
+          <p><b>Comments:</b> ${img.comments}</p>
+          <p><b>Downloads:</b> ${img.downloads}</p>
+        </div>
+      </li>
+    `
     )
     .join("");
+
+  gallery.insertAdjacentHTML("beforeend", markup);
+  lightbox.refresh();
 }
 
 export function showLoader() {
-  document.querySelector(".loader").classList.remove("hidden");
+  loader.classList.remove("hidden");
 }
 
 export function hideLoader() {
-  document.querySelector(".loader").classList.add("hidden");
+  loader.classList.add("hidden");
 }
 
 export function showLoadMore() {
-  document.querySelector(".load-more").classList.remove("hidden");
+  loadMoreBtn.classList.remove("hidden");
 }
 
 export function hideLoadMore() {
-  document.querySelector(".load-more").classList.add("hidden");
+  loadMoreBtn.classList.add("hidden");
 }
