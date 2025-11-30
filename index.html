@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Search</title>
-
-  <link rel="stylesheet" href="./styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css" />
+  <title>Pixabay Search</title>
   <script type="module" crossorigin src="/goit-js-hw-12/index.js"></script>
-  <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-CvjrmXAb.js">
-  <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/vendor-CX4EDM7x.css">
+  <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-CuZBiW7D.css">
 </head>
 <body>
-  <form class="search-form">
+
+  <form class="form">
     <input type="text" name="query" placeholder="Search images..." />
     <button type="submit">Search</button>
   </form>
 
-  <div class="gallery"></div>
+  <span class="loader hidden">Loading...</span>
 
-  <button class="load-more is-hidden">Load More</button>
+  <ul class="gallery"></ul>
 
-  <div class="loader is-hidden"></div>
+  <p class="end-message hidden">We're sorry, but you've reached the end of search results.</p>
+
+  <button class="load-more hidden">Load More</button>
 
 </body>
 </html>
