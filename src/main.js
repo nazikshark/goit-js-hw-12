@@ -16,6 +16,9 @@ import "izitoast/dist/css/iziToast.min.css";
 const form = document.querySelector(".form");
 const loadMoreBtn = document.querySelector(".load-more");
 
+hideLoader();
+hideLoadMore();
+
 let query = "";
 let page = 1;
 const perPage = 40;
@@ -23,7 +26,6 @@ let totalHits = 0;
 
 form.addEventListener("submit", onSearch);
 loadMoreBtn.addEventListener("click", onLoadMore);
-
 
 
 async function onSearch(event) {
@@ -53,7 +55,6 @@ async function onSearch(event) {
         message: "Sorry, no images found",
         position: "topRight",
       });
-      hideLoader();
       return;
     }
 
@@ -83,14 +84,15 @@ async function onLoadMore() {
     const data = await fetchImages(query, page);
     appendGallery(data.hits);
 
-    const cardHeight = document
-      .querySelector(".gallery li")
-      .getBoundingClientRect().height;
+    const firstCard = document.querySelector(".gallery li");
+    if (firstCard) {
+      const cardHeight = firstCard.getBoundingClientRect().height;
 
-    window.scrollBy({
-      top: cardHeight * 2,
-      behavior: "smooth",
-    });
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: "smooth",
+      });
+    }
 
     if (page * perPage >= totalHits) {
       hideLoadMore();
